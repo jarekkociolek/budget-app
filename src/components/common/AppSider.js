@@ -1,17 +1,25 @@
 import "antd/dist/antd.css";
 import "../.././index.css";
 import { Layout, Menu } from "antd";
-import { PlusOutlined, AreaChartOutlined, HomeOutlined, NumberOutlined } from "@ant-design/icons";
+import {
+  PlusOutlined,
+  AreaChartOutlined,
+  HomeOutlined,
+  NumberOutlined,
+} from "@ant-design/icons";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import AddExpense from "../expenses/AddExpense";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as expenseAction from "../../redux/actions/expensesActions";
+import { useTranslation } from "react-i18next";
 
 const { Sider } = Layout;
 
 const AppSider = (props) => {
+  const [t, i18n] = useTranslation();
+
   function onCollapse(collapsed) {
     console.log(collapsed);
     // this.setState({ collapsed });
@@ -35,7 +43,7 @@ const AppSider = (props) => {
         </Link>
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1" icon={<PlusOutlined />} onClick={handleShow}>
-            Dodaj wydatek
+            {t("menu_add_expense")}
           </Menu.Item>
           <Menu.Item key="2" icon={<HomeOutlined />}>
             <Link to="/">Strona głowna</Link>

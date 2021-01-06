@@ -15,21 +15,23 @@ const { Header, Footer, Content } = Layout;
 const App = () => {
   return (
     <>
-      <Layout style={{ minHeight: "100vh" }}>
-        <AppSider></AppSider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content>
-            <Switch>
-              <Route exact path="/" component={HomePage}></Route>
-              <Route path="/expenses" component={ExpensesPage}></Route>
-              <Route component={PageNotFound}></Route>
-            </Switch>
-            <ToastContainer autoClose={3000} hideProgressBar></ToastContainer>
-          </Content>
-          <Footer style={{ textAlign: "center" }}></Footer>
+      <React.Suspense fallback="loading">
+        <Layout style={{ minHeight: "100vh" }}>
+          <AppSider></AppSider>
+          <Layout className="site-layout">
+            <Header className="site-layout-background" style={{ padding: 0 }} />
+            <Content>
+              <Switch>
+                <Route exact path="/" component={HomePage}></Route>
+                <Route path="/expenses" component={ExpensesPage}></Route>
+                <Route component={PageNotFound}></Route>
+              </Switch>
+              <ToastContainer autoClose={3000} hideProgressBar></ToastContainer>
+            </Content>
+            <Footer style={{ textAlign: "center" }}></Footer>
+          </Layout>
         </Layout>
-      </Layout>
+      </React.Suspense>
     </>
   );
 };

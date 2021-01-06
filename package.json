@@ -47,13 +47,17 @@
   },
   "dependencies": {
     "antd": "^4.6.6",
+    "i18next": "^19.8.4",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.0.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "5.0.0",
+    "react-i18next": "^11.8.5",
     "react-redux": "^7.2.1",
+    "react-router-dom": "5.0.0",
+    "react-toastify": "4.5.2",
     "redux": "^4.0.5",
-    "redux-thunk": "2.3.0",
-    "react-toastify": "4.5.2"
+    "redux-thunk": "2.3.0"
   },
   "babel": {
     "presets": [
