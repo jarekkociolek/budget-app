@@ -21,7 +21,6 @@ const AppSider = (props) => {
   const [t, i18n] = useTranslation();
 
   function onCollapse(collapsed) {
-    console.log(collapsed);
     // this.setState({ collapsed });
   }
 
