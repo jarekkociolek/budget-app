@@ -4,7 +4,7 @@ const config = {
   authority: "",
   client_id: "",
   redirect_uri: "",
-  response_type: "i",
+  response_type: "",
   scope: "",
   post_logout_redirect_uri: "",
 };
@@ -16,19 +16,37 @@ export function signinRedirect() {
 }
 
 export function signinRedirectCallback() {
-  return userManager.signinRedirectCallback();
+  return userManager.signinRedirectCallback().then(
+    (user) => {
+      debugger;
+      window.history.replaceState(
+        {},
+        window.document.title,
+        window.location.origin
+      );
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
 }
 
 export function signoutRedirect() {
-  userManager.clearStaleState();
-  userManager.removeUser();
-  return userManager.signoutRedirect();
+  userManager.getUser().then((user) => {
+    userManager.clearStaleState();
+    userManager.removeUser();
+    return userManager.signoutRedirect({ id_token_hint: user.id_token });
+  });
 }
 
 export function signoutRedirectCallback() {
   userManager.clearStaleState();
   userManager.removeUser();
   return userManager.signoutRedirectCallback();
+}
+
+export function getUser() {
+  return userManager.getUser();
 }
 
 export default userManager;

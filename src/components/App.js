@@ -11,14 +11,23 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import * as userManager from "../userService";
+import SignInCallback from "./SignInCallback";
 
 const { Header, Footer, Content } = Layout;
 
 const App = (props) => {
   const isAuthorized = props.isAuthorized;
 
-  const handleLogin = () => {
-    userManager.signinRedirect();
+  const handleLogin = async () => {
+    await userManager.signinRedirect();
+  };
+
+  const handleLogout = () => {
+    userManager.signoutRedirect();
+  };
+
+  const handleUser = async () => {
+    console.log(await userManager.getUser());
   };
 
   return (
@@ -49,12 +58,18 @@ const App = (props) => {
             </>
           ) : (
             <Header className="header">
+              <Route path="/signin-oidc" component={SignInCallback}></Route>
               <div className="logo" />
               <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
                 <Menu.Item key="1" onClick={handleLogin}>
                   Login
                 </Menu.Item>
-                <Menu.Item key="2">Register</Menu.Item>
+                <Menu.Item key="2" onClick={handleUser}>
+                  Register
+                </Menu.Item>
+                <Menu.Item key="3" onClick={handleLogout}>
+                  Logout
+                </Menu.Item>
               </Menu>
             </Header>
           )}
