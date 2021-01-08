@@ -4,6 +4,6 @@ export default {
   },
   apiCallsInProgress: 0,
   authorization: {
-    isAuthorized: false,
+    isAuthenticated: false,
   },
 };

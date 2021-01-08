@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import ".././index.css";
 import { Layout, Menu } from "antd";
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ExpensesPage from "./expenses/ExpensesPage";
 import HomePage from "./home/HomePage";
@@ -12,29 +12,29 @@ import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import * as userManager from "../userService";
 import SignInCallback from "./SignInCallback";
+import { bindActionCreators } from "redux";
+import * as authenticationActions from "../redux/actions/authenticationActions";
+import PropTypes from "prop-types";
 
 const { Header, Footer, Content } = Layout;
 
 const App = (props) => {
-  const isAuthorized = props.isAuthorized;
-
+  useEffect(() => {
+    async function getUser() {
+      let user = await userManager.getUser();
+      props.actions.setUserAuthenticated(user != null);
+    }
+    getUser();
+  });
   const handleLogin = async () => {
     await userManager.signinRedirect();
-  };
-
-  const handleLogout = () => {
-    userManager.signoutRedirect();
-  };
-
-  const handleUser = async () => {
-    console.log(await userManager.getUser());
   };
 
   return (
     <>
       <React.Suspense fallback="loading">
         <Layout style={{ minHeight: "100vh" }}>
-          {isAuthorized ? (
+          {props.isAuthenticated ? (
             <>
               <AppSider></AppSider>
               <Layout className="site-layout">
@@ -64,12 +64,7 @@ const App = (props) => {
                 <Menu.Item key="1" onClick={handleLogin}>
                   Login
                 </Menu.Item>
-                <Menu.Item key="2" onClick={handleUser}>
-                  Register
-                </Menu.Item>
-                <Menu.Item key="3" onClick={handleLogout}>
-                  Logout
-                </Menu.Item>
+                <Menu.Item key="2">Register</Menu.Item>
               </Menu>
             </Header>
           )}
@@ -79,14 +74,20 @@ const App = (props) => {
   );
 };
 
+App.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
+
 function mapStateToProps(state) {
   return {
-    isAuthorized: state.authorization.isAuthorized,
+    isAuthenticated: state.authorization.isAuthenticated,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    actions: bindActionCreators(authenticationActions, dispatch),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

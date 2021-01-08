@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as expenseAction from "../../redux/actions/expensesActions";
 import { useTranslation } from "react-i18next";
+import * as userManager from "../../userService";
 
 const { Sider } = Layout;
 
@@ -26,6 +27,10 @@ const AppSider = (props) => {
 
   const handleShow = () => {
     props.actions.toggleAddExpense(true);
+  };
+
+  const handleLogout = () => {
+    userManager.signoutRedirect();
   };
 
   return (
@@ -52,6 +57,9 @@ const AppSider = (props) => {
           </Menu.Item>
           <Menu.Item key="sub1" icon={<NumberOutlined />} title="Kategorie">
             <Link to="/categories">Kategorie</Link>
+          </Menu.Item>
+          <Menu.Item key="4" onClick={handleLogout}>
+            Logout
           </Menu.Item>
         </Menu>
       </Sider>
