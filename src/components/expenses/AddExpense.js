@@ -1,6 +1,5 @@
 import "antd/dist/antd.css";
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import "../../index.css";
 import {
   Form,
@@ -21,8 +20,6 @@ import { toast } from "react-toastify";
 
 const AddExpense = (props) => {
   const [componentSize, setComponentSize] = useState();
-  const [redirect, setRedirect] = useState(false);
-  const [expense, setExpense] = useState({ ...props.expense });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

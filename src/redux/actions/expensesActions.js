@@ -63,7 +63,7 @@ export function deleteExpense(expenseId) {
     dispatch(beginApiCall());
     return expensesApi
       .deleteExpense(expenseId)
-      .then((deletedExpense) => {
+      .then(() => {
         dispatch(deleteExpenseSuccess(expenseId));
       })
       .catch((error) => {

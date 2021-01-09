@@ -15,15 +15,12 @@ import { bindActionCreators } from "redux";
 import * as expenseAction from "../../redux/actions/expensesActions";
 import { useTranslation } from "react-i18next";
 import * as userManager from "../../userService";
+import PropTypes from "prop-types";
 
 const { Sider } = Layout;
 
 const AppSider = (props) => {
-  const [t, i18n] = useTranslation();
-
-  function onCollapse(collapsed) {
-    // this.setState({ collapsed });
-  }
+  const [t] = useTranslation();
 
   const handleShow = () => {
     props.actions.toggleAddExpense(true);
@@ -35,11 +32,7 @@ const AppSider = (props) => {
 
   return (
     <>
-      <Sider
-        collapsible
-        //   collapsed={this.state.collapsed}
-        onCollapse={onCollapse}
-      >
+      <Sider collapsible>
         <AddExpense></AddExpense>
         <Link to="/">
           {" "}
@@ -67,7 +60,11 @@ const AppSider = (props) => {
   );
 };
 
-function mapStateToProps(state) {
+AppSider.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
+
+function mapStateToProps() {
   return {};
 }
 

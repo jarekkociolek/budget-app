@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import reducers from "./reducers/index.js";
-import moment from "moment";
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import thunk from "redux-thunk";
 

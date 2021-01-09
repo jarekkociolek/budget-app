@@ -33,15 +33,12 @@ const App = (props) => {
   return (
     <>
       <React.Suspense fallback="loading">
+        <Route path="/signin-oidc" component={SignInCallback}></Route>
         <Layout style={{ minHeight: "100vh" }}>
           {props.isAuthenticated ? (
             <>
               <AppSider></AppSider>
               <Layout className="site-layout">
-                <Header
-                  className="site-layout-background"
-                  style={{ padding: 0 }}
-                />
                 <Content>
                   <Switch>
                     <Route exact path="/" component={HomePage}></Route>
@@ -58,7 +55,6 @@ const App = (props) => {
             </>
           ) : (
             <Header className="header">
-              <Route path="/signin-oidc" component={SignInCallback}></Route>
               <div className="logo" />
               <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
                 <Menu.Item key="1" onClick={handleLogin}>
@@ -76,6 +72,7 @@ const App = (props) => {
 
 App.propTypes = {
   actions: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {

@@ -17,8 +17,7 @@ export function signinRedirect() {
 
 export function signinRedirectCallback() {
   return userManager.signinRedirectCallback().then(
-    (user) => {
-      debugger;
+    () => {
       window.history.replaceState(
         {},
         window.document.title,
