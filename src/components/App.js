@@ -1,6 +1,6 @@
 import "antd/dist/antd.css";
 import ".././index.css";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Row, Col } from "antd";
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ExpensesPage from "./expenses/ExpensesPage";
@@ -56,12 +56,18 @@ const App = (props) => {
           ) : (
             <Header className="header">
               <div className="logo" />
-              <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-                <Menu.Item key="1" onClick={handleLogin}>
-                  Login
-                </Menu.Item>
-                <Menu.Item key="2">Register</Menu.Item>
-              </Menu>
+              <Row justify={"end"}>
+                <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  defaultSelectedKeys={["1"]}
+                >
+                  <Menu.Item key="1" onClick={handleLogin}>
+                    Login
+                  </Menu.Item>
+                  <Menu.Item key="2">Register</Menu.Item>
+                </Menu>
+              </Row>
             </Header>
           )}
         </Layout>
