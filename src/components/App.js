@@ -1,6 +1,6 @@
 import "antd/dist/antd.css";
 import ".././index.css";
-import { Layout, Menu, Row, Col } from "antd";
+import { Layout, Menu, Row } from "antd";
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ExpensesPage from "./expenses/ExpensesPage";
@@ -16,7 +16,7 @@ import { bindActionCreators } from "redux";
 import * as authenticationActions from "../redux/actions/authenticationActions";
 import PropTypes from "prop-types";
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 const App = (props) => {
   useEffect(() => {
@@ -26,50 +26,51 @@ const App = (props) => {
     }
     getUser();
   });
+
   const handleLogin = async () => {
     await userManager.signinRedirect();
+  };
+
+  const handleLogout = () => {
+    userManager.signoutRedirect();
   };
 
   return (
     <>
       <React.Suspense fallback="loading">
         <Route path="/signin-oidc" component={SignInCallback}></Route>
-        <Layout style={{ minHeight: "100vh" }}>
-          {props.isAuthenticated ? (
-            <>
-              <AppSider></AppSider>
-              <Layout className="site-layout">
-                <Content>
-                  <Switch>
-                    <Route exact path="/" component={HomePage}></Route>
-                    <Route path="/expenses" component={ExpensesPage}></Route>
-                    <Route component={PageNotFound}></Route>
-                  </Switch>
-                  <ToastContainer
-                    autoClose={3000}
-                    hideProgressBar
-                  ></ToastContainer>
-                </Content>
-                <Footer style={{ textAlign: "center" }}></Footer>
-              </Layout>
-            </>
-          ) : (
-            <Header className="header">
-              <div className="logo" />
-              <Row justify={"end"}>
-                <Menu
-                  theme="dark"
-                  mode="horizontal"
-                  defaultSelectedKeys={["1"]}
-                >
-                  <Menu.Item key="1" onClick={handleLogin}>
-                    Login
-                  </Menu.Item>
-                  <Menu.Item key="2">Register</Menu.Item>
-                </Menu>
-              </Row>
-            </Header>
-          )}
+        <Layout style={{ height: "100vh" }}>
+          <Header>
+            <Row justify={"end"}>
+              <Menu theme="dark" mode="horizontal">
+                {!props.isAuthenticated ? (
+                  <>
+                    <Menu.Item key="1" onClick={handleLogin}>
+                      Login
+                    </Menu.Item>
+                    <Menu.Item key="2">Register</Menu.Item>
+                  </>
+                ) : (
+                  <>
+                    <Menu.Item key="5" onClick={handleLogout}>
+                      Logout
+                    </Menu.Item>
+                  </>
+                )}
+              </Menu>
+            </Row>
+          </Header>
+          <Layout>
+            {props.isAuthenticated ? <AppSider></AppSider> : <></>}
+            <Content>
+              <Switch>
+                <Route exact path="/" component={HomePage}></Route>
+                <Route path="/expenses" component={ExpensesPage}></Route>
+                <Route component={PageNotFound}></Route>
+              </Switch>
+              <ToastContainer autoClose={3000} hideProgressBar></ToastContainer>
+            </Content>
+          </Layout>
         </Layout>
       </React.Suspense>
     </>
