@@ -1,6 +1,6 @@
 import "antd/dist/antd.css";
 import ".././index.css";
-import { Layout, Menu, Row } from "antd";
+import { Layout, Menu, Row, Avatar, Space, Popover } from "antd";
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ExpensesPage from "./expenses/ExpensesPage";
@@ -15,17 +15,26 @@ import SignInCallback from "./SignInCallback";
 import { bindActionCreators } from "redux";
 import * as authenticationActions from "../redux/actions/authenticationActions";
 import PropTypes from "prop-types";
+import { UserOutlined } from "@ant-design/icons";
 
 const { Header, Content } = Layout;
 
 const App = (props) => {
   useEffect(() => {
+    console.log("use effect");
     async function getUser() {
       let user = await userManager.getUser();
-      props.actions.setUserAuthenticated(user != null);
+      if (user != null) {
+        let usr = {
+          isAuthenticated: true,
+          firstName: user.profile.given_name,
+          lastName: user.profile.family_name,
+        };
+        props.actions.setUserAuthenticated(usr);
+      }
     }
     getUser();
-  });
+  }, []);
 
   const handleLogin = async () => {
     await userManager.signinRedirect();
@@ -35,15 +44,32 @@ const App = (props) => {
     userManager.signoutRedirect();
   };
 
+  const content = (
+    <>
+      <Space>{props.user.firstName}</Space>
+      <Space>{props.user.lastName}</Space>
+    </>
+  );
+
   return (
     <>
       <React.Suspense fallback="loading">
         <Route path="/signin-oidc" component={SignInCallback}></Route>
         <Layout style={{ height: "100vh" }}>
           <Header>
-            <Row justify={"end"}>
+            <Row justify={"end"} align={"middle"}>
+              {props.user.isAuthenticated ? (
+                <>
+                  <Popover content={content}>
+                    <Avatar size="large" icon={<UserOutlined />} />{" "}
+                  </Popover>
+                  ,
+                </>
+              ) : (
+                <></>
+              )}
               <Menu theme="dark" mode="horizontal">
-                {!props.isAuthenticated ? (
+                {!props.user.isAuthenticated ? (
                   <>
                     <Menu.Item key="1" onClick={handleLogin}>
                       Login
@@ -52,7 +78,7 @@ const App = (props) => {
                   </>
                 ) : (
                   <>
-                    <Menu.Item key="5" onClick={handleLogout}>
+                    <Menu.Item key="4" onClick={handleLogout}>
                       Logout
                     </Menu.Item>
                   </>
@@ -61,7 +87,7 @@ const App = (props) => {
             </Row>
           </Header>
           <Layout>
-            {props.isAuthenticated ? <AppSider></AppSider> : <></>}
+            {props.user.isAuthenticated ? <AppSider></AppSider> : <></>}
             <Content>
               <Switch>
                 <Route exact path="/" component={HomePage}></Route>
@@ -79,12 +105,13 @@ const App = (props) => {
 
 App.propTypes = {
   actions: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
-    isAuthenticated: state.authorization.isAuthenticated,
+    user: state.authorization.user,
   };
 }
 

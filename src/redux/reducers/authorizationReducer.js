@@ -7,7 +7,7 @@ export default function authorizationReducer(
 ) {
   switch (action.type) {
     case types.SET_USER_AUTHENTICATED:
-      return { ...state, isAuthenticated: action.isAuthenticated };
+      return { ...state, user: action.user };
     default:
       return state;
   }

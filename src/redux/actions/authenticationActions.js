@@ -1,5 +1,5 @@
 import * as types from "./actionTypes";
 
-export function setUserAuthenticated(isAuthenticated) {
-  return { type: types.SET_USER_AUTHENTICATED, isAuthenticated };
+export function setUserAuthenticated(user) {
+  return { type: types.SET_USER_AUTHENTICATED, user };
 }
