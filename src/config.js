@@ -5,4 +5,5 @@ export const oidcConfig = {
   response_type: "",
   scope: "",
   post_logout_redirect_uri: "",
+  registration_uri: "",
 };

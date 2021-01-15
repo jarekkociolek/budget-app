@@ -16,12 +16,12 @@ import { bindActionCreators } from "redux";
 import * as authenticationActions from "../redux/actions/authenticationActions";
 import PropTypes from "prop-types";
 import { UserOutlined } from "@ant-design/icons";
+import { oidcConfig } from "../config";
 
 const { Header, Content } = Layout;
 
 const App = (props) => {
   useEffect(() => {
-    console.log("use effect");
     async function getUser() {
       let user = await userManager.getUser();
       if (user != null) {
@@ -74,7 +74,9 @@ const App = (props) => {
                     <Menu.Item key="1" onClick={handleLogin}>
                       Login
                     </Menu.Item>
-                    <Menu.Item key="2">Register</Menu.Item>
+                    <Menu.Item key="2">
+                      <a href={oidcConfig.registration_uri}>Register</a>
+                    </Menu.Item>
                   </>
                 ) : (
                   <>

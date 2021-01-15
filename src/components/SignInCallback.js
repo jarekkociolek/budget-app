@@ -11,7 +11,6 @@ const SignInCallback = (props) => {
   useEffect(() => {
     async function signinAsync() {
       await userService.signinRedirectCallback();
-      props.actions.setUserAuthenticated(true);
       history.push("/");
     }
     signinAsync();
