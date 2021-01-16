@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import * as authenticationActions from "../redux/actions/authenticationActions";
 import PropTypes from "prop-types";
 
-const SignInCallback = (props) => {
+const SignInCallback = () => {
   const history = useHistory();
   useEffect(() => {
     async function signinAsync() {

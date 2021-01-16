@@ -1,3 +1,5 @@
 {
-    "menu_add_expense": "Add expense"
+    "menu_add_expense": "Add expense",
+    "menu_login": "Login",
+    "menu_register": "Register"
 }

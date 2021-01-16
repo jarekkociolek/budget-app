@@ -1,3 +1,5 @@
 {
-    "menu_add_expense": "Dodaj wydatek"
+    "menu_add_expense": "Dodaj wydatek",
+    "menu_login": "Zaloguj się",
+    "menu_register": "Rejestracja"
 }

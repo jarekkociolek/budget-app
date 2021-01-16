@@ -17,6 +17,7 @@ import * as authenticationActions from "../redux/actions/authenticationActions";
 import PropTypes from "prop-types";
 import { UserOutlined } from "@ant-design/icons";
 import { oidcConfig } from "../config";
+import { useTranslation } from "react-i18next";
 
 const { Header, Content } = Layout;
 
@@ -35,6 +36,8 @@ const App = (props) => {
     }
     getUser();
   }, []);
+
+  const [t] = useTranslation();
 
   const handleLogin = async () => {
     await userManager.signinRedirect();
@@ -72,10 +75,12 @@ const App = (props) => {
                 {!props.user.isAuthenticated ? (
                   <>
                     <Menu.Item key="1" onClick={handleLogin}>
-                      Login
+                      {t("menu_login")}
                     </Menu.Item>
                     <Menu.Item key="2">
-                      <a href={oidcConfig.registration_uri}>Register</a>
+                      <a href={oidcConfig.registration_uri}>
+                        {t("menu_register")}
+                      </a>
                     </Menu.Item>
                   </>
                 ) : (
