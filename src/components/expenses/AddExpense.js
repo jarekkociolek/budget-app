@@ -17,8 +17,10 @@ import { bindActionCreators } from "redux";
 import * as expenseActions from "../../redux/actions/expensesActions";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const AddExpense = (props) => {
+  const [t] = useTranslation();
   const [componentSize, setComponentSize] = useState();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
@@ -53,7 +55,7 @@ const AddExpense = (props) => {
         setSaving(false);
         props.actions.toggleAddExpense(false);
         form.resetFields();
-        toast.success("Dodano wydatek");
+        toast.success(t("added_expense"));
       } catch (error) {
         setError(true);
         setErrorMessage(error.message);
@@ -69,12 +71,12 @@ const AddExpense = (props) => {
     <>
       <Modal
         visible={props.addExpenseVisible}
-        title="Nowy wydatek"
+        title={t("new_expense")}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
-            Anuluj
+            {t("cancel")}
           </Button>,
           <Button
             key="submit"
@@ -84,7 +86,7 @@ const AddExpense = (props) => {
             loading={saving}
             disabled={saving}
           >
-            Dodaj
+            {t("add")}
           </Button>,
         ]}
       >
@@ -104,26 +106,32 @@ const AddExpense = (props) => {
           size={componentSize}
           form={form}
         >
-          <Form.Item label="Tytuł" name="name">
+          <Form.Item label={t("title")} name="name">
             <Input />
           </Form.Item>
-          <Form.Item label="Kwota" name="amount">
+          <Form.Item label={t("amount")} name="amount">
             <InputNumber min={1} />
           </Form.Item>
-          <Form.Item label="Kategoria" name="category">
+          <Form.Item label={t("category")} name="category">
             <Select>
-              <Select.Option value="food">Jedzenie</Select.Option>
-              <Select.Option value="apartment">Mieszkanie</Select.Option>
-              <Select.Option value="demo">Spłata długów</Select.Option>
+              <Select.Option value="food">
+                {t("expense_category_food")}
+              </Select.Option>
+              <Select.Option value="apartment">
+                {t("expense_category_apartment")}
+              </Select.Option>
+              <Select.Option value="debts">
+                {t("expense_category_debts")}
+              </Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Data" name="date" format="DD.MM.RRRR">
+          <Form.Item label={t("date")} name="date" format="DD.MM.RRRR">
             <DatePicker />
           </Form.Item>
         </Form>
         {error ? (
           <Alert
-            message="Wystąpił błąd"
+            message={t("title")}
             description={errorMessage}
             type="error"
             showIcon

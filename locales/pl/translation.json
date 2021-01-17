@@ -1,5 +1,25 @@
 {
     "menu_add_expense": "Dodaj wydatek",
+    "menu_expenses": "Wydatki",
+    "menu_categories": "Kategorie",
     "menu_login": "Zaloguj się",
-    "menu_register": "Rejestracja"
+    "menu_logout": "Wyloguj",
+    "menu_register": "Rejestracja",
+    "cancel": "Anuluj",
+    "add": "Dodaj",
+    "expense_category_food": "Jedzenie",
+    "expense_category_apartment": "Mieszkanie",
+    "expense_category_debts": "Spłata długów",
+    "new_expense": "Nowy wydatek",
+    "title": "Tytuł",
+    "amount": "Kwota",
+    "category": "Kategoria",
+    "date": "Data",
+    "error_occured": "Wystąpił błąd",
+    "added_expense": "Wydatek został dodany",
+    "removed_expense": "Wydatek został usunięty",
+    "income": "Dochód: ",
+    "money_spent": "Wydano: ",
+    "money_left": "Pozostało: ",
+    "expenses_list": "Lista wydatków"
 }

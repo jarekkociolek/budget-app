@@ -30,16 +30,20 @@ const AppSider = (props) => {
       <Sider collapsible>
         <AddExpense></AddExpense>
         <Menu theme="dark" mode="inline">
-          <SubMenu key="sub" title="Wydatki" icon={<AreaChartOutlined />}>
+          <SubMenu
+            key="sub"
+            title={t("menu_expenses")}
+            icon={<AreaChartOutlined />}
+          >
             <Menu.Item key="1" icon={<PlusOutlined />} onClick={handleShow}>
               {t("menu_add_expense")}
             </Menu.Item>
             <Menu.Item key="2" icon={<AreaChartOutlined />}>
-              <Link to="/expenses">Wydatki</Link>
+              <Link to="/expenses">{t("menu_expenses")}</Link>
             </Menu.Item>{" "}
           </SubMenu>
           <Menu.Item key="sub1" icon={<NumberOutlined />} title="Kategorie">
-            <Link to="/categories">Kategorie</Link>
+            <Link to="/categories">{t("menu_categories")}</Link>
           </Menu.Item>
         </Menu>
       </Sider>

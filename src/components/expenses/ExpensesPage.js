@@ -18,10 +18,12 @@ import { bindActionCreators } from "redux";
 import * as expenseActions from "../../redux/actions/expensesActions";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const { Content } = Layout;
 
 const ExpensesPage = (props) => {
+  const [t] = useTranslation();
   const { actions, expenses } = props;
   const moneySpent = expenses
     .map((expense) => expense.amount)
@@ -41,7 +43,7 @@ const ExpensesPage = (props) => {
   };
   const deleteExpense = (expense) => {
     props.actions.deleteExpense(expense.id);
-    toast.success("Usunięto wydatek");
+    toast.success(t("removed_expense"));
   };
   const deleteColumn = (text, record) => (
     <Space size="middle">
@@ -75,22 +77,22 @@ const ExpensesPage = (props) => {
   );
   const columns = [
     {
-      title: "Data",
+      title: t("date"),
       dataIndex: "date",
       key: "date",
     },
     {
-      title: "Kwota",
+      title: t("amount"),
       dataIndex: "amount",
       key: "amount",
     },
     {
-      title: "Nazwa",
+      title: t("title"),
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Kategoria",
+      title: t("category"),
       key: "tags",
       dataIndex: "tags",
       render: tags,
@@ -118,20 +120,24 @@ const ExpensesPage = (props) => {
           />
           <Row gutter={16}>
             <Col span={8}>
-              <Statistic title="Dochód:" value={income} precision={2} />
-            </Col>
-            <Col span={8}>
-              <Statistic title="Wydano:" value={moneySpent} precision={2} />
+              <Statistic title={t("income")} value={income} precision={2} />
             </Col>
             <Col span={8}>
               <Statistic
-                title="Pozostało do wydania:"
+                title={t("money_spent")}
+                value={moneySpent}
+                precision={2}
+              />
+            </Col>
+            <Col span={8}>
+              <Statistic
+                title={t("money_left")}
                 value={moneyLeft}
                 precision={2}
               />
             </Col>
           </Row>
-          <Divider>Lista wydatków</Divider>
+          <Divider>{t("expenses_list")}</Divider>
           <Spin size="large" spinning={props.loading}></Spin>
           <Table columns={columns} dataSource={expenses} rowKey="id" />
         </div>

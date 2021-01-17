@@ -1,5 +1,25 @@
 {
     "menu_add_expense": "Add expense",
+    "menu_expenses": "Expenses",
+    "menu_categories": "Categories",
     "menu_login": "Login",
-    "menu_register": "Register"
+    "menu_logout": "Logout",
+    "menu_register": "Register",
+    "cancel": "Cancel",
+    "add": "Add",
+    "expense_category_food": "Food",
+    "expense_category_apartment": "Apartment",
+    "expense_category_debts": "Debts",
+    "new_expense": "New expense",
+    "title": "Title",
+    "amount": "Amount",
+    "category": "Category",
+    "date": "Date",
+    "error_occured": "An error occured",
+    "added_expense": "Expense added",
+    "removed_expense": "Expense removed",
+    "income": "Income: ",
+    "money_spent": "Money spent: ",
+    "money_left": "Money left: ",
+    "expenses_list": "List of expenses"
 }

@@ -86,7 +86,7 @@ const App = (props) => {
                 ) : (
                   <>
                     <Menu.Item key="4" onClick={handleLogout}>
-                      Logout
+                      {t("menu_logout")}
                     </Menu.Item>
                   </>
                 )}
