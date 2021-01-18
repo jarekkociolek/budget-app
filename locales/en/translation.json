@@ -21,5 +21,6 @@
     "income": "Income: ",
     "money_spent": "Money spent: ",
     "money_left": "Money left: ",
-    "expenses_list": "List of expenses"
+    "expenses_list": "List of expenses",
+    "logging_in_info": "You are being logged in..."
 }
