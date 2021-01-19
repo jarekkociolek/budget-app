@@ -137,8 +137,10 @@ const ExpensesPage = (props) => {
               />
             </Col>
           </Row>
-          <Divider>{t("expenses_list")}</Divider>
-          <Spin size="large" spinning={props.loading}></Spin>
+          <Row justify="center">
+            <Divider>{t("expenses_list")}</Divider>
+            <Spin size="large" spinning={props.loading}></Spin>
+          </Row>
           <Table columns={columns} dataSource={expenses} rowKey="id" />
         </div>
       </Content>

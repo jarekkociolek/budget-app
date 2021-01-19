@@ -6,3 +6,10 @@
     no-repeat center center;
   background-size: contain;
 } */
+.page-loader-container {
+  display: flex;
+  height: 100vh;
+}
+.page-loader {
+  margin: auto;
+}
