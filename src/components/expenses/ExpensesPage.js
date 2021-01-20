@@ -19,6 +19,7 @@ import * as expenseActions from "../../redux/actions/expensesActions";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 
 const { Content } = Layout;
 
@@ -75,11 +76,17 @@ const ExpensesPage = (props) => {
       })}
     </>
   );
+
+  const formatDate = (date) => {
+    return moment(date).format("DD-MM-YYYY");
+  };
+
   const columns = [
     {
       title: t("date"),
       dataIndex: "date",
       key: "date",
+      render: formatDate,
     },
     {
       title: t("amount"),

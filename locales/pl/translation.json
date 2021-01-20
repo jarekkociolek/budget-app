@@ -22,5 +22,8 @@
     "money_spent": "Wydano: ",
     "money_left": "Pozostało: ",
     "expenses_list": "Lista wydatków",
-    "logging_in_info": "Logujesz się do aplikacji..."
+    "logging_in_info": "Logujesz się do aplikacji...",
+    "add_expense_title_required": "Proszę wprowadzić nazwę wydatku",
+    "add_expense_amount_required": "Proszę wprowadzić kwotę wydatku",
+    "add_expense_category_required": "Proszę wybrać kategorię"
 }

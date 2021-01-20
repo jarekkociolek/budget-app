@@ -9,7 +9,6 @@ import {
   Modal,
   Button,
   Input,
-  Alert,
 } from "antd";
 import moment from "moment";
 import { connect } from "react-redux";
@@ -21,16 +20,9 @@ import { useTranslation } from "react-i18next";
 
 const AddExpense = (props) => {
   const [t] = useTranslation();
-  const [componentSize, setComponentSize] = useState();
   const [saving, setSaving] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const [form] = Form.useForm();
-
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
 
   const formIsValid = () => {
     return true;
@@ -42,7 +34,6 @@ const AddExpense = (props) => {
     }
 
     if (!saving) {
-      setError(false);
       form.validateFields();
       setSaving(true);
       try {
@@ -57,8 +48,6 @@ const AddExpense = (props) => {
         form.resetFields();
         toast.success(t("added_expense"));
       } catch (error) {
-        setError(true);
-        setErrorMessage(error.message);
         setSaving(false);
       }
     }
@@ -97,22 +86,36 @@ const AddExpense = (props) => {
           wrapperCol={{
             span: 14,
           }}
-          layout="horizontal"
           initialValues={{
-            size: componentSize,
             date: moment(),
           }}
-          onValuesChange={onFormLayoutChange}
-          size={componentSize}
           form={form}
         >
-          <Form.Item label={t("title")} name="name">
+          <Form.Item
+            label={t("title")}
+            name="name"
+            rules={[
+              { required: true, message: t("add_expense_title_required") },
+            ]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item label={t("amount")} name="amount">
+          <Form.Item
+            label={t("amount")}
+            name="amount"
+            rules={[
+              { required: true, message: t("add_expense_amount_required") },
+            ]}
+          >
             <InputNumber min={1} />
           </Form.Item>
-          <Form.Item label={t("category")} name="category">
+          <Form.Item
+            label={t("category")}
+            name="category"
+            rules={[
+              { required: true, message: t("add_expense_category_required") },
+            ]}
+          >
             <Select>
               <Select.Option value="food">
                 {t("expense_category_food")}
@@ -125,20 +128,15 @@ const AddExpense = (props) => {
               </Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label={t("date")} name="date" format="DD.MM.RRRR">
+          <Form.Item
+            label={t("date")}
+            name="date"
+            format="DD.MM.RRRR"
+            rules={[{ required: true }]}
+          >
             <DatePicker />
           </Form.Item>
         </Form>
-        {error ? (
-          <Alert
-            message={t("title")}
-            description={errorMessage}
-            type="error"
-            showIcon
-          />
-        ) : (
-          <></>
-        )}
       </Modal>
     </>
   );
