@@ -6,4 +6,7 @@ export default {
   authorization: {
     user: {},
   },
+  categories: {
+    items: [],
+  },
 };

@@ -56,6 +56,14 @@ const AddExpense = (props) => {
     props.actions.toggleAddExpense(false);
   };
 
+  const categories = () => {
+    return props.categories.map((category) => (
+      <Select.Option value={category.id} key={category.id}>
+        {category.name}
+      </Select.Option>
+    ));
+  };
+
   return (
     <>
       <Modal
@@ -116,17 +124,7 @@ const AddExpense = (props) => {
               { required: true, message: t("add_expense_category_required") },
             ]}
           >
-            <Select>
-              <Select.Option value="food">
-                {t("expense_category_food")}
-              </Select.Option>
-              <Select.Option value="apartment">
-                {t("expense_category_apartment")}
-              </Select.Option>
-              <Select.Option value="debts">
-                {t("expense_category_debts")}
-              </Select.Option>
-            </Select>
+            <Select>{categories()}</Select>
           </Form.Item>
           <Form.Item
             label={t("date")}
@@ -145,12 +143,13 @@ const AddExpense = (props) => {
 AddExpense.propTypes = {
   addExpenseVisible: PropTypes.bool,
   actions: PropTypes.object.isRequired,
+  categories: PropTypes.array,
 };
 
 function mapStateToProps(state) {
   return {
     addExpenseVisible: state.expenses.addExpenseVisible,
-    expenses: state.expenses.items,
+    categories: state.categories.items,
   };
 }
 

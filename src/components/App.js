@@ -1,10 +1,11 @@
 import "antd/dist/antd.css";
 import ".././index.css";
-import { Layout, Menu, Row, Avatar, Space, Popover, Spin } from "antd";
+import { Layout, Menu, Row, Avatar, Space, Popover } from "antd";
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ExpensesPage from "./expenses/ExpensesPage";
 import HomePage from "./home/HomePage";
+import ExpensesPage from "./expenses/ExpensesPage";
+import CategoriesPage from "./categories/CategoriesPage";
 import AppSider from "./common/AppSider";
 import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
@@ -101,6 +102,10 @@ const App = (props) => {
                   <Switch>
                     <Route exact path="/" component={HomePage}></Route>
                     <Route path="/expenses" component={ExpensesPage}></Route>
+                    <Route
+                      path="/categories"
+                      component={CategoriesPage}
+                    ></Route>
                     <Route component={PageNotFound}></Route>
                   </Switch>
                   <ToastContainer

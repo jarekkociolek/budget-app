@@ -42,9 +42,15 @@ const AppSider = (props) => {
               <Link to="/expenses">{t("menu_expenses")}</Link>
             </Menu.Item>{" "}
           </SubMenu>
-          <Menu.Item key="sub1" icon={<NumberOutlined />} title="Kategorie">
-            <Link to="/categories">{t("menu_categories")}</Link>
-          </Menu.Item>
+          <SubMenu
+            key="sub1"
+            title={t("menu_categories")}
+            icon={<NumberOutlined />}
+          >
+            <Menu.Item key="sub1" icon={<NumberOutlined />}>
+              <Link to="/categories">{t("menu_categories")}</Link>
+            </Menu.Item>
+          </SubMenu>
         </Menu>
       </Sider>
     </>
