@@ -25,5 +25,6 @@
     "logging_in_info": "Logujesz się do aplikacji...",
     "add_expense_title_required": "Proszę wprowadzić nazwę wydatku",
     "add_expense_amount_required": "Proszę wprowadzić kwotę wydatku",
-    "add_expense_category_required": "Proszę wybrać kategorię"
+    "add_expense_category_required": "Proszę wybrać kategorię",
+    "categories_list": "Lista kategorii"
 }
