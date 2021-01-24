@@ -27,5 +27,6 @@
     "add_expense_amount_required": "Proszę wprowadzić kwotę wydatku",
     "add_expense_category_required": "Proszę wybrać kategorię",
     "categories_list": "Lista kategorii",
-    "removed_category": "Category removed"
+    "removed_category": "Kategoria usunięta",
+    "edited_category": "Edytowane kategorię"
 }

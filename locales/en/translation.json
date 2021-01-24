@@ -27,5 +27,6 @@
     "add_expense_amount_required": "Please input expense amount",
     "add_expense_category_required": "Please select expense category",
     "categories_list": "List of categories",
-    "removed_category": "Category removed"
+    "removed_category": "Category removed",
+    "edited_category": "Edited category"
 }

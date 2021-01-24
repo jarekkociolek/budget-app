@@ -148,7 +148,7 @@ const ExpensesPage = (props) => {
             <Divider>{t("expenses_list")}</Divider>
             <Spin size="large" spinning={props.loading}></Spin>
           </Row>
-          <Table columns={columns} dataSource={expenses} rowKey="id" />
+          <Table columns={columns} dataSource={expenses} rowKey="id" bordered />
         </div>
       </Content>
     </>

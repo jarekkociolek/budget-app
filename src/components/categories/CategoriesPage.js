@@ -18,6 +18,11 @@ const CategoriesPage = (props) => {
     toast.success(t("removed_category"));
   };
 
+  const editCategory = (data) => {
+    props.actions.editCategory(data);
+    toast.success(t("edited_category"));
+  };
+
   return (
     <>
       <Content style={{ margin: "0 16px" }}>
@@ -32,6 +37,7 @@ const CategoriesPage = (props) => {
           <CategoriesTable
             categories={props.categories}
             deleteCategory={deleteCategory}
+            editCategory={editCategory}
           ></CategoriesTable>
         </div>
       </Content>

@@ -13,6 +13,13 @@ export default function categoriesReducer(
           (category) => category.id !== action.categoryId
         ),
       };
+    case types.EDIT_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        items: state.items.map((category) =>
+          category.id === action.category.id ? action.category : category
+        ),
+      };
     default:
       return state;
   }

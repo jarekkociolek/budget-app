@@ -21,13 +21,10 @@ const CategoriesTable = (props) => {
   );
 
   const handleSave = (row) => {
-    const newData = [...this.state.dataSource];
+    const newData = props.categories;
     const index = newData.findIndex((item) => row.key === item.key);
     const item = newData[index];
-    newData.splice(index, 1, { ...item, ...row });
-    this.setState({
-      dataSource: newData,
-    });
+    props.editCategory(row);
   };
 
   const components = {
