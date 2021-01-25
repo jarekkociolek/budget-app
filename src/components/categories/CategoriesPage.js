@@ -23,6 +23,14 @@ const CategoriesPage = (props) => {
     toast.success(t("edited_category"));
   };
 
+  const addCategory = () => {
+    props.actions.addCategory({
+      id: (props.categories.length + 1).toString(),
+      name: t("new_category_placeholder"),
+    });
+    toast.success(t("added_category"));
+  };
+
   return (
     <>
       <Content style={{ margin: "0 16px" }}>
@@ -38,6 +46,7 @@ const CategoriesPage = (props) => {
             categories={props.categories}
             deleteCategory={deleteCategory}
             editCategory={editCategory}
+            addCategory={addCategory}
           ></CategoriesTable>
         </div>
       </Content>
@@ -48,6 +57,7 @@ const CategoriesPage = (props) => {
 CategoriesPage.propTypes = {
   categories: PropTypes.array,
   loading: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

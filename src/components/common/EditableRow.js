@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Input, Form } from "antd";
+import PropTypes from "prop-types";
+
 const EditableContext = React.createContext(null);
 
-export const EditableRow = ({ index, ...props }) => {
+export const EditableRow = ({ ...props }) => {
   const [form] = Form.useForm();
   return (
     <Form form={form} component={false}>
@@ -49,6 +51,15 @@ export const EditableCell = ({
   };
 
   let childNode = children;
+
+  EditableCell.propTypes = {
+    title: PropTypes.string,
+    editable: PropTypes.bool,
+    dataIndex: PropTypes.string,
+    record: PropTypes.object,
+    handleSave: PropTypes.func,
+    children: PropTypes.array,
+  };
 
   if (editable) {
     childNode = editing ? (

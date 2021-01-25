@@ -20,6 +20,8 @@ export default function categoriesReducer(
           category.id === action.category.id ? action.category : category
         ),
       };
+    case types.ADD_CATEGORY_SUCCESS:
+      return { ...state, items: [...state.items, action.category] };
     default:
       return state;
   }

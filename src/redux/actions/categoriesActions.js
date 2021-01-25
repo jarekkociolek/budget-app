@@ -11,6 +11,11 @@ export const editCategorySuccess = (category) => ({
   category,
 });
 
+export const addCategorySuccess = (category) => ({
+  type: actionTypes.ADD_CATEGORY_SUCCESS,
+  category,
+});
+
 export function deleteCategory(categoryId) {
   return (dispatch) => {
     return dispatch(deleteCategorySuccess(categoryId));
@@ -21,5 +26,12 @@ export function editCategory(category) {
   return (dispatch) => {
     dispatch(beginApiCall());
     return dispatch(editCategorySuccess(category));
+  };
+}
+
+export function addCategory(category) {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    return dispatch(addCategorySuccess(category));
   };
 }

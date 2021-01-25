@@ -28,5 +28,8 @@
     "add_expense_category_required": "Proszę wybrać kategorię",
     "categories_list": "Lista kategorii",
     "removed_category": "Kategoria usunięta",
-    "edited_category": "Edytowane kategorię"
+    "edited_category": "Edytowano kategorię",
+    "added_category": "Dodano nową kategorię",
+    "add_category": "Dodaj nową kategorię",
+    "new_category_placeholder": "Nowa kategoria"
 }

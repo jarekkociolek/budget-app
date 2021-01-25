@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { Table, Space } from "antd";
+import { Table, Space, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { EditableRow, EditableCell } from "../common/EditableRow";
@@ -19,13 +19,6 @@ const CategoriesTable = (props) => {
       </span>
     </Space>
   );
-
-  const handleSave = (row) => {
-    const newData = props.categories;
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    props.editCategory(row);
-  };
 
   const components = {
     body: {
@@ -61,13 +54,22 @@ const CategoriesTable = (props) => {
         editable: col.editable,
         dataIndex: col.dataIndex,
         title: col.title,
-        handleSave: handleSave,
+        handleSave: props.editCategory,
       }),
     };
   });
 
   return (
     <>
+      <Button
+        onClick={props.addCategory}
+        type="primary"
+        style={{
+          marginBottom: 16,
+        }}
+      >
+        {t("add_category")}
+      </Button>
       <Table
         columns={editableColumns}
         dataSource={props.categories}
@@ -84,6 +86,8 @@ const CategoriesTable = (props) => {
 CategoriesTable.propTypes = {
   categories: PropTypes.array,
   deleteCategory: PropTypes.func.isRequired,
+  addCategory: PropTypes.func.isRequired,
+  editCategory: PropTypes.func.isRequired,
 };
 
 export default CategoriesTable;
